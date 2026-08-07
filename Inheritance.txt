@@ -1,0 +1,145 @@
+import java.util.*;
+
+class Product {
+  int id = 78;
+  String name = "Amul"; 
+
+  public Product(int id, String name) {
+    this.id = id;
+    this.name = name;
+  }
+
+  public void display() {
+    System.out.println("ID :: " + id + " Name :: " + name);
+  } 
+}
+
+class A extends Product {
+  int count = 50;
+  String category = "butter";
+
+  public A(int id, String name, int count, String category) {
+    // this.id = id;
+    // this.name = name;
+    super(id, name);
+    this.count = count;
+    this.category = category;
+  }
+
+  public void display() {
+    //super(id,name);
+    super.display();
+    System.out.println("Count :: " + count + " Category :: " + category);
+  } 
+}
+
+class B extends Product {
+  int count = 90;
+  String category = "milk";
+
+  public B(int id, String name, int count, String category) {
+    // this.id = id;
+    // this.name = name;
+    super(id, name);
+    this.count = count;
+    this.category = category;
+  }
+
+  public void display() {
+    //super(id,name);
+    super.display();
+    System.out.println("Count :: " + count + " Category :: " + category);
+  } 
+}
+
+class C extends Product {
+  int count = 56;
+  String category = "choco";
+
+  public C(int id, String name, int count, String category) {
+    // this.id = id;
+    // this.name = name;
+    super(id, name);
+    this.count = count;
+    this.category = category;
+  }
+
+  public void display() {
+    //super(id,name);
+    super.display();
+    System.out.println("Count :: " + count + " Category :: " + category);
+  } 
+}
+
+// Subclass of A
+
+class SubA extends A {
+  private double price;
+
+  public SubA(int id, String name, int count, String category, double price) {
+    super(id, name, count, category);
+    this.price = price;
+  }
+
+  public void displayDetails() {
+    display();
+    double totalPrice = count * price;
+    System.out.println("Price : " + price);
+    System.out.println("Total : " + totalPrice);
+  }
+}
+
+class SubB extends B {
+  private double price;
+
+  public SubB(int id, String name, int count, String category, double price) {
+    super(id, name, count, category);
+    this.price = price;
+  }
+
+  public void displayDetails() {
+    display();
+    double totalPrice = count * price;
+    System.out.println("Price : " + price);
+    System.out.println("Total : " + totalPrice);
+  }
+}
+
+public class InheritanceDemo {
+  public static void main(String[] args) {
+
+    SubA objA = new SubA(78, "Amul", 50, "Butter", 30);
+    System.out.println("----- SubA -----");
+    objA.displayDetails();
+
+    System.out.println();
+
+    SubB objB = new SubB(78, "Amul", 90, "Milk", 10);
+    System.out.println("----- SubB -----");
+    objB.displayDetails();
+
+    System.out.println();
+
+    C c = new C(78, "Amul", 56, "Choco");
+    System.out.println("----- C -----");
+    c.display();
+  }
+}
+------------------------------
+output
+
+----- SubA -----
+ID :: 78 Name :: Amul
+Count :: 50 Category :: Butter
+Price : 30.0
+Total : 1500.0
+
+----- SubB -----
+ID :: 78 Name :: Amul
+Count :: 90 Category :: Milk
+Price : 10.0
+Total : 900.0
+
+----- C -----
+ID :: 78 Name :: Amul
+Count :: 56 Category :: Choco

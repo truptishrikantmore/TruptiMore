@@ -1,0 +1,86 @@
+Assignment 1: Parallel Number Calculator
+
+Create a Java program that uses ExecutorService and CompletableFuture to perform three calculations simultaneously:
+- Check whether a number is prime.
+- Calculate the factorial of the number.
+- Calculate the square of the number.
+
+For example, if:
+
+Number = 5
+
+Expected output:
+
+Prime: true
+Factorial: 120
+Square: 25
+------------------------------------------------------------------------
+
+import java.util.*;
+import java.math.BigInteger;
+import java.util.concurrent.*;
+
+public class Main {
+  public static void main(String[] args) {
+
+    int number = 5;
+
+    ExecutorService executor = Executors.newFixedThreadPool(3);
+
+    // Check Prime
+    CompletableFuture<Boolean> primeFuture = CompletableFuture.supplyAsync(() -> 
+                  isPrime(number), executor);
+
+    // Calculate Factorial
+    CompletableFuture<BigInteger> factorialFuture = CompletableFuture.supplyAsync(() -> 
+                  factorial(number), executor);
+
+    // Calculate Square
+    CompletableFuture<Integer> squareFuture = CompletableFuture.supplyAsync(() -> 
+                  number * number, executor);
+
+    // Wait for all tasks to complete
+
+    CompletableFuture.allOf(primeFuture, factorialFuture, squareFuture).join();
+
+    try {
+      System.out.println("Prime: " + primeFuture.get());
+      System.out.println("Factorial: " + factorialFuture.get());
+      System.out.println("Square: " + squareFuture.get());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    executor.shutdown();
+
+  }
+
+  // Method to check if a number is prime
+  private static boolean isPrime(int n) {
+
+    if (n <= 1) {
+      return false;
+    }
+
+    for (int i = 2; i <= Math.sqrt(n); i++) {
+      if (n % i == 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // Method to calculate factorial
+  private static BigInteger factorial(int n) {
+    BigInteger result = BigInteger.ONE;
+    for (int i = 2; i <= n; i++) {
+      result = result.multiply(BigInteger.valueOf(i));
+    }
+      return result;
+  }
+}
+------------------------------------------
+
+output -
+Prime: true
+Factorial: 120
+Square: 25

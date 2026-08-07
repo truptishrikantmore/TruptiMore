@@ -1,0 +1,19 @@
+-------String -------
+import java.util.*;
+ 
+public class Main {
+    public static void main(String[] args) {   // auto-launcher method
+   String product = "Dell laptop";
+   String product2 = "dell laptop";
+   String categories="Laptop, Mouse, Keyboard, Monitor";
+   System.out.println("Lowercase " + product.toLowerCase());
+   System.out.println("Uppercase " + product.toUpperCase());
+   System.out.println("equal or not " + product.equals(product2));
+   System.out.println("contains " + categories.contains("Monitor"));
+   System.out.println("charat " + product.charAt(6));
+   System.out.println("replace " + product2.replace("dell","Gaming HDX"));
+   System.out.println("Concat" + product.concat("- is new in market"));
+   System.out.println(" Substring " + categories.substring(3,16));
+   System.out.println(" isEmpty " + categories.isEmpty());
+}
+}

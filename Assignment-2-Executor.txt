@@ -1,0 +1,94 @@
+Assignment 2: Student Marks Processing
+
+Create a program that processes a student's marks using multiple asynchronous tasks.
+
+Input:
+Student Name = Rahul
+Maths = 80
+Java = 75
+Database = 90
+
+Perform these operations concurrently:
+- Calculate total marks.
+- Calculate average marks.
+- Find the highest mark.
+- Determine whether the student passed.
+
+Expected Output
+Student: Rahul
+Total: 245
+Average: 81.66
+Highest: 90
+Result: PASS
+-----------------------------------------------------------------
+
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Main {
+  public static void main(String[] args) {
+    String studentName = "Rahul";
+
+    int maths = 80;
+    int java = 75;
+    int database = 90;
+
+    ExecutorService executor = Executors.newFixedThreadPool(4);
+
+    // Calculate Total
+
+    CompletableFuture<Integer> totalFuture =
+
+    CompletableFuture.supplyAsync(() -> maths + java + database, executor);
+    // Calculate Average
+
+    CompletableFuture<Double> averageFuture = CompletableFuture.supplyAsync(() -> 
+        (maths + java + database) / 3.0, executor);
+
+    // Find Highest Mark
+
+    CompletableFuture<Integer> highestFuture =
+    CompletableFuture.supplyAsync(() -> Math.max(maths, Math.max(java, database)), executor);
+
+    // Determine Pass/Fail
+
+    CompletableFuture<String> resultFuture =
+
+    CompletableFuture.supplyAsync(() -> {
+      if (maths >= 40 && java >= 40 && database >= 40) {
+        return "PASS";
+      } else {
+        return "FAIL";
+      }
+    }, executor);
+
+    // Wait for all tasks to complete
+
+    CompletableFuture.allOf(
+      totalFuture,
+      averageFuture,
+      highestFuture,
+      resultFuture
+    ).join();
+
+    try {
+      System.out.println("Student: " + studentName);
+      System.out.println("Total: " + totalFuture.get());
+      System.out.printf("Average: %.2f%n", averageFuture.get());
+      System.out.println("Highest: " + highestFuture.get());
+      System.out.println("Result: " + resultFuture.get());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    executor.shutdown();
+  }
+}
+-------------------------------------------
+output -
+
+Student: Rahul
+Total: 245
+Average: 81.67
+Highest: 90
+Result: PASS

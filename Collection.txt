@@ -1,0 +1,199 @@
+Create one object of treeset and add the any 6 programming languages in random order
+   - remove two languages
+   - add three more languages after removal
+   - Check if " Java" is part of your treeset or not
+   - remove all the elements from the treeset and display it
+   
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      
+      TreeSet treesetLanguage =  new TreeSet();
+      treesetLanguage.add("Java");
+      treesetLanguage.add("SQL");
+      treesetLanguage.add("C++");
+      treesetLanguage.add("Python");
+      treesetLanguage.add("C");
+      treesetLanguage.add(".Net");
+      System.out.println("TreeSet is :: " + treesetLanguage);
+
+      treesetLanguage.remove("C");
+      treesetLanguage.remove("C++");
+      System.out.println("TreeSet is :: " + treesetLanguage);
+
+      treesetLanguage.add("PHP");
+      treesetLanguage.add("JavaScript");
+      treesetLanguage.add("React");
+      System.out.println("TreeSet is :: " + treesetLanguage);
+
+      boolean isJava = treesetLanguage.contains("Java");
+      System.out.println("Contains Java::" + isJava);
+
+      treesetLanguage.clear();
+      System.out.println("TreeSet is :: " + treesetLanguage);
+    }
+}
+
+output :
+
+TreeSet is :: [.Net, C, C++, Java, Python, SQL]
+TreeSet is :: [.Net, Java, Python, SQL]
+TreeSet is :: [.Net, Java, JavaScript, PHP, Python, React, SQL]
+Contains Java::true
+TreeSet is :: []
+
+-------------------------------------------------------------------
+
+Assignment 2:
+Create object of ArrayList and add
+6 fruits
+2 cities
+2 hobbies
+ 
+do following operations:
+ 
+- print the arraylist
+- remove one hobby using the index
+- search("cricket")
+- remove 1 city using the index & remove 1 fruit using the name
+- print 4th & 6th element together
+- replace the hobby "Singing" with new hobby "Dancing"
+- reverse the arraylist
+- add "Kerala" at 4th position and add "Mango" at 2nd position
+- create another arraylist containing the 5 cities names
+- Merge the two above arraylist together
+- iterate and print all the arraylist elements
+- create the sublist (4,6)
+- clear the arraylist
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      
+      ArrayList<String> arrList =  new ArrayList<String>();
+      arrList.add("Apple");
+      arrList.add("Mango");
+      arrList.add("Grapes");
+      arrList.add("Orange");
+      arrList.add("Banana");
+      arrList.add("Strawberry");
+      arrList.add("Pune");
+      arrList.add("Mumbai");
+      arrList.add("Gardening");
+      arrList.add("Singing");
+      System.out.println("Arraylist is :: " + arrList);
+
+      arrList.remove(7);
+      arrList.remove("Banana");
+      System.out.println("After removal arraylist is :: " + arrList);
+
+      System.out.println("4th and 6th element together :: " + arrList.get(4) + " " + arrList.get(6));
+
+      arrList.set(7, "Dancing");
+      System.out.println("After replacement arraylist is :: " + arrList);
+
+      Collections.reverse(arrList);
+      System.out.println("After reversing arraylist is :: " + arrList);
+
+      arrList.add(2, "Mango");
+      arrList.add(4, "Kerala");
+      System.out.println("After adding new elements arraylist is :: " + arrList);
+
+      ArrayList<String> arrList1 =  new ArrayList<String>();
+      arrList1.add("Mumbai");
+      arrList1.add("Solapur");
+      arrList1.add("Satara");
+      arrList1.add("Nagpur");
+      arrList1.add("Kolhapur");
+      System.out.println("New Arraylist is :: " + arrList1);
+
+      arrList.addAll(arrList1);
+      System.out.println("After merging arraylist is:: " + arrList);
+
+      for(String i: arrList){
+        System.out.println("List element :: "+ i);
+      }
+
+      arrList.subList(4,6);
+      System.out.println("Sublist :: " + arrList.subList(4,6));
+
+      arrList.clear();
+      System.out.println("Arraylist :: " + arrList);
+    }
+}
+
+Arraylist is :: [Apple, Mango, Grapes, Orange, Banana, Strawberry, Pune, Mumbai, Gardening, Singing]
+After removal arraylist is :: [Apple, Mango, Grapes, Orange, Strawberry, Pune, Gardening, Singing]
+4th and 6th element together :: Strawberry Gardening
+After replacement arraylist is :: [Apple, Mango, Grapes, Orange, Strawberry, Pune, Gardening, Dancing]
+After reversing arraylist is :: [Dancing, Gardening, Pune, Strawberry, Orange, Grapes, Mango, Apple]
+After adding new elements arraylist is :: [Dancing, Gardening, Mango, Pune, Kerala, Strawberry, Orange, Grapes, Mango, Apple]
+New Arraylist is :: [Mumbai, Solapur, Satara, Nagpur, Kolhapur]
+After merging arraylist is:: [Dancing, Gardening, Mango, Pune, Kerala, Strawberry, Orange, Grapes, Mango, Apple, Mumbai, Solapur, Satara, Nagpur, Kolhapur]
+List element :: Dancing
+List element :: Gardening
+List element :: Mango
+List element :: Pune
+List element :: Kerala
+List element :: Strawberry
+List element :: Orange
+List element :: Grapes
+List element :: Mango
+List element :: Apple
+List element :: Mumbai
+List element :: Solapur
+List element :: Satara
+List element :: Nagpur
+List element :: Kolhapur
+Sublist :: [Kerala, Strawberry]
+Arraylist :: []
+-------------------------------------------------------------------
+
+Assignment 5:
+Use HashMap
+Add 10 fruits into it and do the following operations:
+1) print map
+2) get all keys and values
+3) remove 4th fruit using value and 7th fruit using index
+4) check if map contains "banana" and "apple" fruit
+5) check if it contains 4th key or not
+6) hashcode of map
+7) clear map
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      
+      HashMap hm = new HashMap();
+      hm.put(1,"Apple");
+      hm.put(2,"Banana");
+      hm.put(3,"Mango");
+      hm.put(4,"Grapes");
+      hm.put(5,"Kiwi");
+      hm.put(6,"Strawberry");
+      hm.put(7,"Orange");
+      hm.put(8,"Pineapple");
+      hm.put(9,"Lemon");
+      hm.put(10,"Leeche");
+
+      System.out.println("Hashmap is :: " + hm);
+
+      hm.remove(5,"Kiwi");
+      hm.remove(7);
+      System.out.println("Hashmap is :: " + hm);
+
+      System.out.println("Is contains banana :: " + hm.containsValue("Banana") + 
+      " >> Is contains apple :: " + hm.containsValue("Apple"));
+
+      System.out.println("Is contains 4th Key :: " + hm.containsKey(4));
+
+      System.out.println("Hashcode of hashmap is :: " + hm.hashCode());
+
+      hm.clear();
+      System.out.println("Hashmap is :: " + hm);
+    }
+
+}

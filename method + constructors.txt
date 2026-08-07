@@ -1,0 +1,82 @@
+Assignment 2:  (method + constructors)
+Create class as "Shape" 
+i want to calculate the area of the different shapes - square, rectangle, circle
+1. create 4 constructors - default contructor + three parameterized constrcutors for the shapes (using constructor overloading)
+2. create 3 methods for (square, rectangle, circle) display which will display the value of the area calculated
+3. calcuate the area of the rhombus and triangle using the method overloading concept 
+-------------------------------------------------------------------------------------
+
+
+import java.util.*;
+
+public class Shape {
+
+    double area;
+
+    // 1. Default Constructor
+    Shape() {
+      System.out.println("Default Constructor Called");
+    }
+
+    // Parameterized Constructor for Square
+    Shape(int side) {
+      area = side * side;
+    }
+
+    // Parameterized Constructor for Rectangle
+    Shape(int length, int breadth) {
+      area = length * breadth;
+    }
+
+    // Parameterized Constructor for Circle
+    Shape(double radius) {
+      area = 3.14 * radius * radius;
+    }
+
+    // 2. Display methods
+    void displaySquare() {
+      System.out.println("Area of Square = " + area);
+    }
+
+    void displayRectangle() {
+      System.out.println("Area of Rectangle = " + area);
+    }
+
+    void displayCircle() {
+      System.out.println("Area of Circle = " + area);
+    }
+
+    // 3. Method Overloading
+
+    // Area of Triangle
+    double areaCalc(double base, double height) {
+      return (base * height) / 2;
+    }
+    // Area of Rhombus
+    double areaCalc(double d1, double d2, int x) {
+      return (d1 * d2) / 2;
+    }
+
+    public static void main(String[] args) {
+      // Default Constructor
+      Shape s1 = new Shape();
+
+      // Square
+      Shape square = new Shape(5);
+      square.displaySquare();
+
+      // Rectangle
+      Shape rectangle = new Shape(10, 5);
+      rectangle.displayRectangle();
+
+      // Circle
+      Shape circle = new Shape(7.0);
+      circle.displayCircle();
+
+      // Triangle using Method Overloading
+      System.out.println("Area of Triangle = " + s1.areaCalc(10, 6));
+
+      // Rhombus using Method Overloading
+      System.out.println("Area of Rhombus = " + s1.areaCalc(12, 8, 1));
+    }
+}
