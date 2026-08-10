@@ -1,0 +1,91 @@
+Assignment 4 — Switch Expressions 
+•	Create a variable for ticket class: 
+o	ECONOMY 
+o	PREMIUM 
+o	BUSINESS 
+o	FIRST 
+•	Use a switch expression to determine baggage allowance: 
+o	Economy → 15 KG 
+o	Premium → 25 KG 
+o	Business → 35 KG 
+o	First → 50 KG 
+•	Use another switch expression to calculate seat charges: 
+o	Window → ₹1,000 
+o	Middle → ₹500 
+o	Aisle → ₹750 
+•	Calculate the final ticket price: 
+Final Price =
+Flight Price + Seat Charge
+•	Use -> syntax in the switch expression. 
+•	Use yield in at least one multi-line switch case. 
+•	Handle an invalid ticket class using default. 
+•	Display: 
+o	Flight number. 
+o	Ticket class. 
+o	Seat type. 
+o	Baggage allowance. 
+o	Seat charge. 
+o	Final ticket price.
+--------------------------------------------------------------------
+
+import java.util.*;
+
+public class FlightTicketSystem {
+  public static void main(String[] args) {
+
+    String flightNumber = "AI101";
+    double flightPrice = 8000.0;
+    String ticketClass = "BUSINESS"; // ECONOMY, PREMIUM, BUSINESS, FIRST
+    String seatType = "Window"; // Window, Middle, Aisle
+
+    // Switch Expression for Baggage Allowance
+
+    int baggageAllowance = switch (ticketClass) {
+      case "ECONOMY" -> 15;
+      case "PREMIUM" -> 25;
+      case "BUSINESS" -> {
+        System.out.println("Business Class Selected");
+        yield 35; // Using yield in multi-line switch case
+      }
+      case "FIRST" -> 50;
+      default -> {
+        System.out.println("Invalid Ticket Class!");
+        yield 0;
+      }
+    };
+
+    // Switch Expression for Seat Charges
+    double seatCharge = switch (seatType.toUpperCase()) {
+      case "WINDOW" -> 1000.0;
+      case "MIDDLE" -> 500.0;
+      case "AISLE" -> 750.0;
+      default -> 0.0;
+    };
+
+    // Final Ticket Price
+
+    double finalPrice = flightPrice + seatCharge;
+
+    // Display Details
+
+    System.out.println("\n===== Flight Ticket Details =====");
+    System.out.println("Flight Number : " + flightNumber);
+    System.out.println("Ticket Class : " + ticketClass);
+    System.out.println("Seat Type : " + seatType);
+    System.out.println("Baggage Allowance : " + baggageAllowance + " KG");
+    System.out.println("Seat Charge : ₹" + seatCharge);
+    System.out.println("Flight Price : ₹" + flightPrice);
+    System.out.println("Final Ticket Price : ₹" + finalPrice);
+  }
+}
+------------------------------------------------
+Output - Business Class Selected
+
+===== Flight Ticket Details =====
+Flight Number : AI101
+Ticket Class : BUSINESS
+Seat Type : Window
+Baggage Allowance : 35 KG
+Seat Charge : ₹1000.0
+Flight Price : ₹8000.0
+Final Ticket Price : ₹9000.0

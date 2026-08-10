@@ -1,0 +1,174 @@
+Assignment 1 — Lambda Expressions 
+Requirements
+•	Create a Flight class with: 
+o	flightId 
+o	flightNumber 
+o	source 
+o	destination 
+o	price 
+•	Create a functional interface: 
+o	FlightOperation 
+o	Method: void execute(Flight flight) 
+•	Create at least 5 flight objects. 
+•	Use Lambda expressions to: 
+o	Display all flight details. 
+o	Display flights whose price is greater than ₹5,000. 
+o	Display flights from a particular source. 
+o	Display flight number and destination. 
+o	Calculate a 10% discount on flight price. 
+--------------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.List;
+
+// Flight Class
+class Flight {
+  private int flightId;
+  private String flightNumber;
+  private String source;
+  private String destination;
+  private double price;
+
+  public Flight(int flightId, String flightNumber, String source, String destination, 
+                  double price) {
+    this.flightId = flightId;
+    this.flightNumber = flightNumber;
+    this.source = source;
+    this.destination = destination;
+    this.price = price;
+  }
+
+  public int getFlightId() {
+    return flightId;
+  }
+
+  public String getFlightNumber() {
+    return flightNumber;
+  }
+
+  public String getSource() {
+    return source;
+  }
+
+  public String getDestination() {
+    return destination;
+  }
+
+  public double getPrice() {
+    return price;
+  }
+
+  @Override
+  public String toString() {
+    return "Flight [ID=" + flightId +
+    ", Number=" + flightNumber +
+    ", Source=" + source +
+    ", Destination=" + destination +
+    ", Price=₹" + price + "]";
+  }
+}
+
+// Functional Interface
+@FunctionalInterface
+interface FlightOperation {
+  void execute(Flight flight);
+}
+
+public class Main {
+
+  public static void main(String[] args) {
+
+    // Creating 5 Flight Objects
+    List<Flight> flights = new ArrayList<>();
+
+    flights.add(new Flight(101, "AI101", "Mumbai", "Delhi", 6500));
+    flights.add(new Flight(102, "SG202", "Pune", "Bangalore", 4800));
+    flights.add(new Flight(103, "6E303", "Mumbai", "Chennai", 7200));
+    flights.add(new Flight(104, "UK404", "Delhi", "Hyderabad", 5500));
+    flights.add(new Flight(105, "AI505", "Pune", "Kolkata", 4500));
+
+    // 1. Display all flight details
+
+    System.out.println("----- All Flight Details -----");
+
+    FlightOperation displayAll = flight -> System.out.println(flight);
+    flights.forEach(displayAll::execute);
+
+    // 2. Display flights whose price is greater than ₹5000
+
+    System.out.println("\n----- Flights Price > ₹5000 -----");
+
+    FlightOperation priceGreaterThan5000 = flight -> {
+      if (flight.getPrice() > 5000) {
+        System.out.println(flight);
+      }
+    };
+    flights.forEach(priceGreaterThan5000::execute);
+
+    // 3. Display flights from a particular source (Mumbai)
+
+    String selectedSource = "Mumbai";
+
+    System.out.println("\n----- Flights From " + selectedSource + " -----");
+
+    FlightOperation sourceFilter = flight -> {
+    if (flight.getSource().equalsIgnoreCase(selectedSource)) {
+      System.out.println(flight);
+    }};
+
+    flights.forEach(sourceFilter::execute);
+
+    // 4. Display flight number and destination
+
+    System.out.println("\n----- Flight Number & Destination -----");
+
+    FlightOperation flightAndDestination = flight ->
+    System.out.println("Flight Number: " + flight.getFlightNumber()
+        + ", Destination: " + flight.getDestination());
+    flights.forEach(flightAndDestination::execute);
+
+    // 5. Calculate 10% discount on flight price
+
+    System.out.println("\n----- Price After 10% Discount -----");
+
+    FlightOperation discountOperation = flight -> {
+      double discountedPrice = flight.getPrice() * 0.90;
+      System.out.println(flight.getFlightNumber()
+      + " -> Original Price: ₹" + flight.getPrice()
+      + ", Discounted Price: ₹" + discountedPrice);
+    };
+    flights.forEach(discountOperation::execute);
+  }
+}
+------------------------------------------------------------
+output -
+
+----- All Flight Details -----
+Flight [ID=101, Number=AI101, Source=Mumbai, Destination=Delhi, Price=₹6500.0]
+Flight [ID=102, Number=SG202, Source=Pune, Destination=Bangalore, Price=₹4800.0]
+Flight [ID=103, Number=6E303, Source=Mumbai, Destination=Chennai, Price=₹7200.0]
+Flight [ID=104, Number=UK404, Source=Delhi, Destination=Hyderabad, Price=₹5500.0]
+Flight [ID=105, Number=AI505, Source=Pune, Destination=Kolkata, Price=₹4500.0]
+
+----- Flights Price > ₹5000 -----
+Flight [ID=101, Number=AI101, Source=Mumbai, Destination=Delhi, Price=₹6500.0]
+Flight [ID=103, Number=6E303, Source=Mumbai, Destination=Chennai, Price=₹7200.0]
+Flight [ID=104, Number=UK404, Source=Delhi, Destination=Hyderabad, Price=₹5500.0]
+
+----- Flights From Mumbai -----
+Flight [ID=101, Number=AI101, Source=Mumbai, Destination=Delhi, Price=₹6500.0]
+Flight [ID=103, Number=6E303, Source=Mumbai, Destination=Chennai, Price=₹7200.0]
+
+----- Flight Number & Destination -----
+Flight Number: AI101, Destination: Delhi
+Flight Number: SG202, Destination: Bangalore
+Flight Number: 6E303, Destination: Chennai
+Flight Number: UK404, Destination: Hyderabad
+Flight Number: AI505, Destination: Kolkata
+
+----- Price After 10% Discount -----
+AI101 -> Original Price: ₹6500.0, Discounted Price: ₹5850.0
+SG202 -> Original Price: ₹4800.0, Discounted Price: ₹4320.0
+6E303 -> Original Price: ₹7200.0, Discounted Price: ₹6480.0
+UK404 -> Original Price: ₹5500.0, Discounted Price: ₹4950.0
+AI505 -> Original Price: ₹4500.0, Discounted Price: ₹4050.0

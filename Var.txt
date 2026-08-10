@@ -1,0 +1,96 @@
+Assignment 2 — var 
+•	Create variables using var for: 
+o	Flight number. 
+o	Flight price. 
+o	Passenger name. 
+o	Number of seats. 
+o	Booking status. 
+•	Create a collection of flights using var. 
+•	Create a List of passenger names using var. 
+•	Create a Map containing: 
+o	Flight ID 
+o	Flight Number 
+•	Use var to calculate: 
+o	Total ticket price. 
+o	Discount amount. 
+o	Final booking amount. 
+•	Display all booking information. 
+•	Demonstrate where var cannot be used: 
+o	Uninitialized local variables. 
+o	Method parameters. 
+o	Return types. 
+o	Instance variables. 
+________________________________________
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class FlightBooking {
+
+  public static void main(String[] args) {
+
+  // Variables using var
+  var flightNumber = "F202";
+  var flightPrice = 6000.0;
+  var passengerName = "Trupti More";
+  var numberOfSeats = 2;
+  var bookingStatus = true;
+
+  // Collection of flights using var
+  var flights = new ArrayList<String>();
+  flights.add("F001");
+  flights.add("F002");
+  flights.add("F003");
+  flights.add("F004");
+
+  // List of passenger names using var
+  var passengerNames = new ArrayList<String>();
+  passengerNames.add("Trupti More");
+  passengerNames.add("Shraddha Sharma");
+  passengerNames.add("Sandhya Patel");
+
+  // Map containing Flight ID and Flight Number
+  var flightMap = new HashMap<String, Object>();
+  flightMap.put("Flight ID", "F001");
+  flightMap.put("Flight Number", "FN001");
+
+  // Calculations using var
+  var totalTicketPrice = flightPrice * numberOfSeats;
+  var discountAmount = totalTicketPrice * 0.10; // 10% discount
+  var finalBookingAmount = totalTicketPrice - discountAmount;
+
+  // Display booking information
+
+  System.out.println("===== Flight Booking Information =====");
+  System.out.println("Passenger Name : " + passengerName);
+  System.out.println("Flight Number : " + flightNumber);
+  System.out.println("Flight Price : ₹" + flightPrice);
+  System.out.println("Seats Booked : " + numberOfSeats);
+  System.out.println("Booking Status : " + bookingStatus);
+  System.out.println("\nAvailable Flights: " + flights);
+  System.out.println("Passenger List: " + passengerNames);
+  System.out.println("Flight Details Map: " + flightMap);
+  System.out.println("\n===== Billing Information =====");
+  System.out.println("Total Ticket Price : ₹" + totalTicketPrice);
+  System.out.println("Discount Amount : ₹" + discountAmount);
+  System.out.println("Final Amount : ₹" + finalBookingAmount);
+  }
+}
+-----------------------------------------------
+Output -
+
+===== Flight Booking Information =====
+Passenger Name : Trupti More
+Flight Number : F202
+Flight Price : ₹6000.0
+Seats Booked : 2
+Booking Status : true
+
+Available Flights: [F001, F002, F003, F004]
+Passenger List: [Trupti More, Shraddha Sharma, Sandhya Patel]
+Flight Details Map: {Flight Number=FN001, Flight ID=F001}
+
+===== Billing Information =====
+Total Ticket Price : ₹12000.0
+Discount Amount : ₹1200.0
+Final Amount : ₹10800.0
