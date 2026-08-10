@@ -1,0 +1,162 @@
+Assignment 3 — Records 
+Requirements
+•	Create a Flight record containing: 
+o	flightId 
+o	flightNumber 
+o	source 
+o	destination 
+o	price 
+•	Create at least 5 Flight records. 
+•	Display: 
+o	Flight number. 
+o	Source. 
+o	Destination. 
+o	Price. 
+o	Complete flight information. 
+•	Store the Flight records inside a List. 
+•	Display all flights. 
+•	Find flights with price greater than ₹5,000. 
+•	Create a Passenger record containing: 
+o	passengerId 
+o	name 
+o	passportNumber 
+•	Create a Booking record containing: 
+o	bookingId 
+o	Flight 
+o	Passenger 
+o	numberOfSeats 
+•	Create at least 2 bookings using the Flight and Passenger records. 
+•	Display complete booking information. 
+------------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class FlightManagement {
+
+  // Flight Record
+  record Flight(int flightId,String flightNumber,String source,String destination,
+    double price) {
+
+  }
+
+  // Passenger Record
+  record Passenger(int passengerId,String name,String passportNumber) {
+
+  }
+
+  // Booking Record
+  record Booking(int bookingId,Flight flight,Passenger passenger,int numberOfSeats) {
+
+  }
+
+  public static void main(String[] args) {
+
+    // Create Flight Records
+    Flight f1 = new Flight(101, "AI101", "Mumbai", "Delhi", 4500);
+    Flight f2 = new Flight(102, "AI102", "Pune", "Bangalore", 5500);
+    Flight f3 = new Flight(103, "AI103", "Hyderabad", "Chennai", 6200);
+    Flight f4 = new Flight(104, "AI104", "Delhi", "Kolkata", 7200);
+    Flight f5 = new Flight(105, "AI105", "Mumbai", "Goa", 3800);
+
+    // Store Flights in a List
+
+    List<Flight> flights = new ArrayList<>();
+    flights.add(f1);
+    flights.add(f2);
+    flights.add(f3);
+    flights.add(f4);
+    flights.add(f5);
+
+    // Display Flight Details
+
+    System.out.println("===== FLIGHT DETAILS =====");
+
+    for (Flight flight : flights) {
+      System.out.println("Flight Number : " + flight.flightNumber());
+      System.out.println("Source : " + flight.source());
+      System.out.println("Destination : " + flight.destination());
+      System.out.println("Price : ₹" + flight.price());
+      System.out.println("Complete Info : " + flight);
+      System.out.println("----------------------------------");
+    }
+
+    // Find Flights with Price Greater than ₹5000
+
+    System.out.println("\n===== FLIGHTS WITH PRICE > ₹5000 =====");
+    for (Flight flight : flights) {
+      if (flight.price() > 5000) {
+        System.out.println(flight);
+      }
+    }
+
+    // Create Passenger Records
+
+    Passenger p1 = new Passenger(1, "Trupti More", "P1234567");
+    Passenger p2 = new Passenger(2, "Rahul Sharma", "P7654321");
+
+    // Create Booking Records
+
+    Booking b1 = new Booking(1001, f2, p1, 2);
+    Booking b2 = new Booking(1002, f4, p2, 1);
+
+    // Display Complete Booking Information
+
+    System.out.println("\n===== BOOKING DETAILS =====");
+    System.out.println("\nBooking ID : " + b1.bookingId());
+    System.out.println("Passenger : " + b1.passenger().name());
+    System.out.println("Passport : " + b1.passenger().passportNumber());
+    System.out.println("Flight No : " + b1.flight().flightNumber());
+    System.out.println("Route : " + b1.flight().source() + " -> " + b1.flight().destination());
+    System.out.println("Seats : " + b1.numberOfSeats());
+    System.out.println("Total Cost : ₹"+ (b1.numberOfSeats() * b1.flight().price()));
+    System.out.println("\nBooking ID : " + b2.bookingId());
+    System.out.println("Passenger : " + b2.passenger().name());
+    System.out.println("Passport : " + b2.passenger().passportNumber());
+    System.out.println("Flight No : " + b2.flight().flightNumber());
+    System.out.println("Route : " + b2.flight().source()+ " -> " + b2.flight().destination());
+    System.out.println("Seats : " + b2.numberOfSeats());
+    System.out.println("Total Cost : ₹"+ (b2.numberOfSeats() * b2.flight().price()));
+    System.out.println("\n===== COMPLETE BOOKING RECORDS =====");
+    System.out.println(b1);
+    System.out.println(b2);
+  }
+}
+------------------------------------------------------
+
+===== FLIGHT DETAILS =====
+Flight Number : AI101
+Source : Mumbai
+Destination : Delhi
+Price : ₹4500.0
+Complete Info : Flight[flightId=101, flightNumber=AI101, source=Mumbai, destination=Delhi, price=4500.0]
+----------------------------------
+Flight Number : AI102
+Source : Pune
+Destination : Bangalore
+Price : ₹5500.0
+Complete Info : Flight[flightId=102, flightNumber=AI102, source=Pune, destination=Bangalore, price=5500.0]
+----------------------------------
+Flight Number : AI103
+Source : Hyderabad
+Destination : Chennai
+Price : ₹6200.0
+Complete Info : Flight[flightId=103, flightNumber=AI103, source=Hyderabad, destination=Chennai, price=6200.0]
+----------------------------------
+Flight Number : AI104
+Source : Delhi
+Destination : Kolkata
+Price : ₹7200.0
+Complete Info : Flight[flightId=104, flightNumber=AI104, source=Delhi, destination=Kolkata, price=7200.0]
+----------------------------------
+Flight Number : AI105
+Source : Mumbai
+Destination : Goa
+Price : ₹3800.0
+Complete Info : Flight[flightId=105, flightNumber=AI105, source=Mumbai, destination=Goa, price=3800.0]
+----------------------------------
+
+===== FLIGHTS WITH PRICE > ₹5000 =====
+Flight[flightId=102, flightNumber=AI102, source=Pune, destination=Bangalore, price=5500.0]
+Flight[flightId=103, flightNumber=AI103, source=Hyderabad, destination=Chennai, price=6200.0]
+Flight[flightId=104, flightNumber=AI104, source=Delhi, destination=Kolkata, price=7200.0]
